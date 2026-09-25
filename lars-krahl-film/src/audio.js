@@ -9,6 +9,8 @@
  * ===================================================================== */
 const AUDIO = (() => {
   const SR = 48000;
+  /** 'chip' (default): SID-style chiptune score. 'storybook': the original orchestral score. */
+  const SCORE = (typeof location !== 'undefined' && new URLSearchParams(location.search).get('score')) || window.FILM_SCORE || 'chip';
   const S = { inst: {}, voice: {} };
   const NOTE_IDX = { C: 0, D: 2, E: 4, F: 5, G: 7, A: 9, B: 11 };
   /** 'C4' | 'F#5' | 'Eb3' | 'Cs4' -> midi */
@@ -113,7 +115,11 @@ const AUDIO = (() => {
     const vOut = gainN(1.9);
     chain(voice, filt('lowshelf', 220, .7, -2), filt('peaking', 3200, 1, 3), filt('highshelf', 8000, .7, 1.5), vComp, vOut, master);
     chain(vOut, gainN(.06), verb);
-    Object.assign(out, { master, verb, music, duck, chip, chipLP, sfx, voice });
+    // lead bus with a dotted-eighth echo, the classic SID-tune trick
+    const leadBus = gainN(1), dly = ctx.createDelay(1), fb = gainN(.32), wet = gainN(.3);
+    dly.delayTime.value = BEAT * .75;
+    chain(leadBus, music); chain(leadBus, dly, filt('lowpass', 3200), fb, dly); chain(dly, wet, music);
+    Object.assign(out, { master, verb, music, duck, chip, chipLP, sfx, voice, lead: leadBus });
     return out;
   }
 
@@ -354,6 +360,188 @@ const AUDIO = (() => {
     chipLine(fin + BEAT * 2.5, 'C6:.125 E6:.125 G6:.125 C7:.5', .5);
   }
 
+  /* ================== THE CHIPTUNE SCORE (default) ==================
+     A SID-flavoured score in A minor: PWM pulse leads with delayed vibrato and
+     echo, resonant filtered bass, 50 Hz chord arpeggios and noise drums.        */
+  const sid = deferred(sidNow, 1);
+  function sidNow(notes, t, dur, vel = 1, o = {}) {
+    const ms = (Array.isArray(notes) ? notes : [notes]).map(n => N(n) + (o.oct || 0) * 12);
+    const f0 = mtof(ms[0]), wave = o.wave || 'pwm', end = t + dur, rel = o.r ?? .05;
+    const g = gainN(0), peak = (o.gain ?? .06) * vel * (1 + (RNG() - .5) * .1), sus = o.s ?? .7;
+    g.gain.setValueAtTime(0, t); g.gain.linearRampToValueAtTime(peak, t + (o.a ?? .003));
+    g.gain.setTargetAtTime(peak * sus, t + (o.a ?? .003), (o.d ?? .1) / 3);
+    g.gain.setValueAtTime(peak * sus, end); g.gain.linearRampToValueAtTime(0, end + rel);
+    const oscs = [];
+    if (wave === 'pwm') {            // pulse = saw - delayed saw; modulating the delay = PWM
+      const s = ctx.createOscillator(); s.type = 'sawtooth';
+      const dl = ctx.createDelay(.05), inv = gainN(-1);
+      dl.delayTime.value = (o.duty ?? .3) / f0;
+      const l = ctx.createOscillator(), lg = gainN((o.pwm ?? .12) / f0); l.frequency.value = o.pwmRate ?? 3;
+      chain(l, lg, dl.delayTime); l.start(t); l.stop(end + rel + .05);
+      s.connect(g); chain(s, dl, inv, g); oscs.push(s);
+    } else {
+      const s = ctx.createOscillator();
+      if (wave === 'pulse25') s.setPeriodicWave(M.pulse25); else s.type = wave;
+      s.connect(g); oscs.push(s);
+      if (o.detune) { const s2 = ctx.createOscillator(); s2.type = wave; s2.detune.value = o.detune; s2.connect(g); oscs.push(s2); }
+    }
+    for (const s of oscs) {
+      s.frequency.value = f0;
+      if (ms.length > 1) { const step = 1 / (o.rate || 50); let k = 0; for (let tt = t; tt < end; tt += step, k++) s.frequency.setValueAtTime(mtof(ms[k % ms.length]), tt); }
+      if (o.from != null) { s.frequency.setValueAtTime(mtof(N(o.from)), t); s.frequency.exponentialRampToValueAtTime(f0, t + (o.glide || .06)); }
+      if (o.slide) s.frequency.exponentialRampToValueAtTime(mtof(ms[0] + o.slide), end);
+      if (o.vib) { const l = ctx.createOscillator(), lg = gainN(0); l.frequency.value = 5.5; lg.gain.setValueAtTime(0, t); lg.gain.linearRampToValueAtTime(o.vib === true ? 22 : o.vib, t + Math.min(.35, dur)); chain(l, lg, s.detune); l.start(t); l.stop(end + rel + .05); }
+      s.start(t); s.stop(end + rel + .05);
+    }
+    let node = g;
+    if (o.lp) {
+      const f = filt('lowpass', o.lp[0], o.q ?? 4);
+      f.frequency.setValueAtTime(o.lp[0], t); f.frequency.exponentialRampToValueAtTime(o.lp[1], t + (o.lpT ?? .2));
+      g.connect(f); node = f;
+    }
+    chain(node, panN(o.pan || 0), o.bus || M.music);
+  }
+  const sidLine = (t0, str, vel, o) => { let b = 0; for (const tok of str.trim().split(/\s+/)) { const [n, d] = tok.split(':'); if (n !== 'r') sid(n.startsWith('[') ? n.slice(1, -1).split(',') : n, t0 + b * BEAT, +d * BEAT * (o.legato ?? .92), vel, o); b += +d; } };
+  const LEAD = { wave: 'pwm', duty: .35, pwm: .1, a: .008, d: .25, s: .75, r: .12, vib: true, gain: .045, pan: .12 };
+  const lead = (t0, str, vel = 1, o = {}) => sidLine(t0, str, vel, Object.assign({}, LEAD, { bus: M.lead }, o));
+  const bassNote = (n, t, dur, vel = 1, o = {}) => sid(n, t, dur, vel, Object.assign({ wave: 'sawtooth', gain: .13, a: .002, d: .14, s: .55, r: .03, lp: [2400, 380], lpT: .16, q: 7, pan: -.05 }, o));
+  const arpNote = (n, t, dur, vel = 1, o = {}) => sid(n, t, dur, vel, Object.assign({ wave: 'pwm', duty: .22, gain: .05, a: .001, d: .07, s: .25, r: .03, lp: [6000, 1800], lpT: .1, q: 2, pan: -.25 }, o));
+  const chordArp = (ch, t, dur, vel = 1, o = {}) => sid(ch, t, dur, vel, Object.assign({ wave: 'pulse25', gain: .03, a: .002, d: .3, s: .6, r: .05, rate: 50, pan: .28, lp: [5200, 5200] }, o));
+  const pad = (ch, t, dur, vel = 1) => ch.forEach((n, i) => sid(n, t, dur, vel, { wave: 'sawtooth', detune: 9, gain: .026, a: .35, d: .5, s: .8, r: .6, lp: [900, 1500], lpT: dur, q: 1, pan: (i - 1) * .35 }));
+  const CD = {   // chip drums, straight to the music bus
+    kick: deferred((t, v = 1) => { const g = gainN(0); env(g, t, .001, .65 * v, .2); const o = osc('triangle', 190, t, .25, g); o.frequency.exponentialRampToValueAtTime(42, t + .09); chain(g, M.music); const c = gainN(0), f = filt('highpass', 3000); env(c, t, .0005, .18 * v, .008); noise(t, .02, f); chain(f, c, M.music); }, 0),
+    snare: deferred((t, v = 1) => { const g = gainN(0), f = filt('highpass', 1100); env(g, t, .001, .34 * v, .15); noise(t, .22, f, { rate: .7 }); chain(f, g, panN(.05), M.music); const b = gainN(0); env(b, t, .001, .22 * v, .06); const o = osc('square', 240, t, .1, b); o.frequency.exponentialRampToValueAtTime(110, t + .05); chain(b, filt('lowpass', 2500), M.music); }, 0),
+    hat: deferred((t, v = 1, open) => { const g = gainN(0), f = filt('highpass', 8000); env(g, t, .0005, .11 * v, open ? .14 : .03); noise(t, open ? .25 : .06, f, { rate: 1.3 }); chain(f, g, panN(.3), M.music); }, 0),
+    tom: deferred((t, f0 = 150, v = 1) => { const g = gainN(0); env(g, t, .001, .5 * v, .22); const o = osc('triangle', f0 * 1.6, t, .3, g); o.frequency.exponentialRampToValueAtTime(f0 * .7, t + .15); chain(g, panN(-.15), M.music); }, 0),
+  };
+  function scoreChip() {
+    const CH = { Am: ['A3', 'C4', 'E4'], F: ['F3', 'A3', 'C4'], C: ['C4', 'E4', 'G4'], G: ['G3', 'B3', 'D4'], Dm: ['D4', 'F4', 'A4'], E: ['E3', 'G#3', 'B3'], A7: ['A3', 'C#4', 'E4', 'G4'] };
+    const RT = { Am: 'A2', F: 'F2', C: 'C3', G: 'G2', Dm: 'D2', E: 'E2', A7: 'A2' };
+    // [bar, [[chord, beats], ...], style]
+    const PLAN = [
+      [0, [['Am', 4]], 'intro'], [1, [['F', 4]], 'intro'],
+      [2, [['Am', 4]], 'groove'], [3, [['F', 2], ['G', 2]], 'groove'],
+      [4, [['Am', 4]], 'drive'], [5, [['F', 2], ['G', 2]], 'drive'],
+      [6, [['Dm', 4]], 'march'], [7, [['E', 1], ['E', 3]], 'bits'],
+      [8, [['F', 4]], 'rise'], [9, [['Dm', 2.5]], 'rise'],
+      [10, [['Am', 4]], 'bounce'], [11, [['F', 2], ['G', 2]], 'bounce'],
+      [12, [['F', 4]], 'flow'], [13, [['C', 4]], 'flow'], [14, [['G', 2], ['Am', 2]], 'flow'],
+      [15, [['Dm', 4]], 'snake'], [16, [['A7', 4]], 'snake'],
+      [17, [['F', 4]], 'drive'], [18, [['G', 4]], 'drive'],
+      [20, [['F', 4]], 'anthem'], [21, [['G', 4]], 'anthem'],
+    ];
+    for (const [bar, chords, style] of PLAN) {
+      let b0 = 0;
+      for (const [cn, beats] of chords) {
+        const t = bt(bar, b0), ch = CH[cn], rt = RT[cn], steps8 = Math.round(beats * 2), steps16 = Math.round(beats * 4);
+        const at = k => t + k * BEAT;
+        if (style === 'intro') {
+          pad(ch, t, beats * BEAT, 2);
+          bassNote(rt, t, beats * BEAT * .95, .7, { lp: [700, 300], d: .6, s: .8 });
+          for (let k = 0; k < steps8; k++) arpNote(ch[k % 3], at(k / 2), BEAT * .4, 1.6, { oct: 1, gain: .045, lp: [2600 + k * 200 + bar * 1200, 1500], lpT: .15 });
+        }
+        if (style === 'groove' || style === 'bounce') {
+          for (let k = 0; k < steps8; k++) bassNote(k % 2 ? N(rt) + 12 : rt, at(k / 2), BEAT * .42, k % 2 ? .8 : 1);
+          for (let k = 0; k < steps16; k++) arpNote(ch[[0, 1, 2, 1][k % 4]], at(k / 4), BEAT * .22, .9, { oct: 1 });
+          for (let k = 0; k < steps8; k++) CD.hat(at(k / 2), k % 2 ? 1 : .6);
+          if (style === 'bounce') { for (let k = 0; k < beats; k++) k % 2 ? CD.snare(at(k), .7) : CD.kick(at(k), .9); }
+          else if (bar === 3) { CD.kick(at(0), .7); CD.snare(at(1), .5); }
+          pad(ch, t, beats * BEAT, .7);
+        }
+        if (style === 'drive' || style === 'anthem') {
+          for (let k = 0; k < steps8; k++) bassNote(k % 2 ? N(rt) + 12 : rt, at(k / 2), BEAT * .4, k % 2 ? .85 : 1.05, { lp: [3000, 450] });
+          chordArp(ch, t, beats * BEAT * .98, style === 'anthem' ? .9 : 1, { oct: 1 });
+          for (let k = 0; k < beats; k++) { k % 2 ? CD.snare(at(k), .85) : CD.kick(at(k), 1); CD.hat(at(k + .5), 1, k === beats - 1); }
+          for (let k = 0; k < steps8; k++) CD.hat(at(k / 2), .5);
+          if (style === 'anthem') pad(ch, t, beats * BEAT, 1);
+        }
+        if (style === 'march') {
+          for (let k = 0; k < steps16; k++) bassNote(k % 4 === 2 ? N(rt) + 12 : rt, at(k / 4), BEAT * .2, k % 4 === 0 ? 1.05 : .8, { lp: [1800, 300] });
+          [[0, 1], [.5, .6], [.75, .6], [1, .9], [2, 1], [2.5, .6], [2.75, .6], [3, .9], [3.5, .7], [3.75, .7]].forEach(([k, v]) => CD.snare(at(k), v * .8));
+          CD.kick(at(0)); CD.kick(at(2));
+          pad(ch, t, beats * BEAT, .9);
+        }
+        if (style === 'bits') {
+          if (beats === 1) { bassNote(rt, t, BEAT * .5, 1); CD.snare(t, .7); }
+          else {
+            for (let k = 0; k < steps16; k++) arpNote(ch[k % 3], at(k / 4), BEAT * .2, 1, { oct: 1 + (k % 8 > 3 ? 1 : 0), duty: .12 });
+            for (let k = 0; k < steps8; k++) bassNote(k % 2 ? N(rt) + 12 : rt, at(k / 2), BEAT * .4, .9);
+            CD.kick(at(1)); CD.snare(at(2)); CD.kick(at(2.5)); for (let k = 0; k < 6; k++) CD.hat(at(k / 2), .8);
+          }
+        }
+        if (style === 'rise') {
+          pad(ch, t, beats * BEAT, 1.1);
+          for (let k = 0; k < steps8; k++) bassNote(rt, at(k / 2), BEAT * .4, .75 + k * .03, { lp: [1200 + k * 200, 400] });
+          for (let k = 0; k < steps16; k++) arpNote(ch[k % 3], at(k / 4), BEAT * .2, .5 + .5 * k / steps16, { oct: 1 });
+          for (let k = 0; k < steps8; k++) CD.hat(at(k / 2), .4 + .4 * k / steps8);
+        }
+        if (style === 'flow') {
+          pad(ch, t, beats * BEAT, 1);
+          for (let k = 0; k < beats; k++) bassNote(rt, at(k), BEAT * .8, .8, { lp: [900, 300], d: .3, s: .5 });
+          for (let k = 0; k < steps16; k++) arpNote([...ch, N(ch[0]) + 12][[0, 1, 2, 3, 2, 1][k % 6]], at(k / 4), BEAT * .3, .85, { oct: 1, pan: Math.sin(k * .7) * .5, lp: [4200, 1400] });
+          for (let k = 0; k < steps16; k++) CD.hat(at(k / 4), k % 2 ? .35 : .6);
+          CD.kick(at(0), .7); if (beats > 2) CD.kick(at(2.5), .5);
+        }
+        if (style === 'snake') {
+          pad(ch, t, beats * BEAT, .8);
+          for (let k = 0; k < beats; k++) bassNote(k % 2 ? N(rt) + 7 : rt, at(k), BEAT * .45, .9);
+          [[0, 90], [1.5, 130], [2, 100]].forEach(([k, f]) => CD.tom(at(k), f));
+          [.5, 1, 2.5, 3, 3.5, 3.75].forEach(k => CD.hat(at(k), .8));
+        }
+        b0 += beats;
+      }
+    }
+    // ---- leads (kept out of the way of the narration, bold in the gaps)
+    lead(bt(0, 2), 'E5:1 A5:1 C6:1.5 B5:.5 A5:1 E5:1', .8, { gain: .034 });
+    lead(bt(2), 'r:2 A4:.5 C5:.5 E5:1 F5:1 E5:.5 D5:.5 E5:1 D5:1', .6, { gain: .032 });
+    chordArp(['A4', 'C5', 'E5', 'A5'], bt(3, 3), BEAT * .9, 1, { rate: 60, slide: 12, gain: .03 });   // dive into the screen
+    riser(bt(3, 2), BEAT * 2, .7);
+    lead(bt(4), 'A5:.5 E5:.25 A5:.25 C6:.5 B5:.5 A5:1 G5:.5 E5:.5', .9);
+    lead(bt(5), 'F5:.5 A5:.5 C6:.5 A5:.5 G5:.25 B5:.25 D6:.25 G6:.25 A6:1', .9);           // "Forever"
+    sid(['A4', 'C5', 'E5', 'A5'], bt(5, 3.5), BEAT * .9, .8, { wave: 'pulse25', gain: .03, rate: 60, slide: -24 });   // power-down
+    lead(bt(6), 'D5:.75 D5:.25 F5:.5 A5:.5 D6:1 C6:.5 A5:.5 B5:1', .7, { gain: .038, legato: .8 });
+    CD.snare(bt(7, 1), 1); D.crash(bt(7, 1), .6);
+    lead(bt(7, 1.5), 'E5:.25 G#5:.25 B5:.25 E6:.25 D6:.25 B5:.25 G#5:.25 B5:.25 E6:.5', .6, { gain: .035, vib: false });
+    lead(bt(8), 'A4:1 C5:1 F5:1.5 E5:.5 D5:1 F5:1', .7, { gain: .036 });
+    // the stamp: G major hit on bar 9 beat 2.5, then silence
+    const hit = bt(9, 2.5);
+    D.roll(bt(9, 1.5), hit, .05, .35);
+    bassNote('G2', hit, BEAT * 1.3, 1.2, { lp: [4000, 500], lpT: .5 }); bassNote('G1', hit, BEAT * 1.3, 1);
+    sid(['G4', 'B4', 'D5', 'G5'], hit, BEAT * 1.4, 1, { wave: 'pulse25', gain: .045, rate: 50, d: .5, s: .4, r: .3 });
+    lead(hit, 'G5:1.5', 1, { gain: .05, from: 'G4', glide: .08 });
+    CD.kick(hit, 1.2); D.crash(hit, 1);
+    lead(bt(10), 'E5:.5 A5:.5 C6:.5 A5:.5 E6:.5 C6:.5 A5:1 F5:.5 A5:.5 C6:.5 F6:.5 D6:.5 B5:.5 G5:1', .7, { gain: .036, legato: .7 });
+    lead(bt(12), 'A5:2 C6:1 A5:1 G5:2 E5:1 G5:1 D5:1 G5:1 E5:1 A5:1', .6, { gain: .032 });
+    lead(bt(15), 'A4:.5 Bb4:.25 C#5:.25 D5:.5 E5:.25 F5:.25 E5:.5 D5:.5 C#5:.5 D5:.5', .8, { gain: .04, duty: .45 });
+    lead(bt(16), 'E5:.5 F5:.25 E5:.25 D5:.5 C#5:.5 Bb4:.5 A4:.5 C#5:.5 E5:.5', .8, { gain: .04, duty: .45 });
+    lead(bt(17), 'C6:.5 A5:.5 F5:.5 A5:.5 C6:.5 D6:.5 C6:1 B5:.5 G5:.5 D5:.5 G5:.5 B5:.5 D6:.5 G6:1', .75, { gain: .036 });
+    // bar 19: stop-time for the plug (beat 1) and the light bulb (beat 2)
+    bassNote('A2', bt(19), BEAT * .5, 1.1); bassNote('A1', bt(19), BEAT * .5, 1); CD.kick(bt(19), 1.1); D.crash(bt(19), .5);
+    sid(['A4', 'C5', 'E5'], bt(19), BEAT * .5, 1, { wave: 'pulse25', gain: .04, rate: 50 });
+    sid(['G5', 'B5', 'D6', 'G6'], bt(19, 2), BEAT * 1.9, 1, { wave: 'pwm', duty: .15, gain: .03, rate: 25, a: .002, d: .6, s: .3, r: .4, bus: M.lead });
+    pad(['G3', 'D4', 'G4', 'B4'], bt(19, 2), BEAT * 2, 1.1);
+    D.roll(bt(19, 2.5), bt(20), .05, .45); riser(bt(19, 2), BEAT * 2, .9);
+    // outro anthem + final chord + "READY." blip
+    D.crash(bt(20), .7);
+    lead(bt(20), 'A5:.5 C6:.5 F6:1 E6:.5 C6:.5 A5:1 B5:.5 D6:.5 G6:1 F6:.5 D6:.5 B5:.5 D6:.5', .9, { gain: .042 });
+    lead(bt(20), 'F5:1.5 E5:.5 C5:2 G5:1.5 F5:.5 D5:2', .5, { gain: .022, duty: .2, pan: -.2 });
+    const fin = bt(22);
+    pad(['C3', 'G3', 'C4', 'E4', 'G4'], fin, BEAT * 4, 1.4);
+    bassNote('C2', fin, BEAT * 3, 1.2, { lp: [3000, 300], lpT: 1.2, s: .8, r: .6 });
+    sid(['C5', 'E5', 'G5', 'C6'], fin, BEAT * 3, 1, { wave: 'pulse25', gain: .035, rate: 50, d: 1, s: .5, r: .8, bus: M.lead });
+    lead(fin, 'C6:3', 1, { gain: .045, from: 'G5', glide: .1, r: .8 });
+    CD.kick(fin, 1.2); D.crash(fin, 1);
+    sidLine(fin + BEAT * 2.75, 'C6:.125 E6:.125 G6:.125 C7:.5', .8, { wave: 'pulse25', gain: .04, a: .001, s: .8, bus: M.lead });
+  }
+  /* 8-bit replacements for the most cartoonish effects when the chip score plays */
+  const CHIP_FX = {
+    boing: c => sid(N('C4') + Math.round(12 * Math.log2(c.pitch || 1)), c.t, .3, (c.v ?? .45) * 1.4, { wave: 'pwm', gain: .05, slide: 19, a: .002, s: .6, r: .05, bus: M.sfx }),
+    hop: c => sid('C5', c.t, .07, (c.v ?? .3) * 2, { wave: 'pulse25', gain: .04, slide: 12, bus: M.sfx }),
+    twang: c => sid(N('G3') + Math.round(12 * Math.log2(c.pitch || 1)), c.t, .35, (c.v ?? .3) * 2.2, { wave: 'sawtooth', gain: .05, a: .001, d: .15, s: .2, r: .1, lp: [5000, 500], lpT: .2, q: 8, bus: M.sfx }),
+    chime: c => sidLine(c.t, 'C6:.08 E6:.08 G6:.08 C7:.08 E7:.5', (c.v ?? .4) * 2, { wave: 'pulse25', gain: .03, a: .001, d: .2, s: .4, r: .2, bus: M.lead }),
+    ding: c => { sid(['C7', 'G7'], c.t, .5, (c.v ?? .5) * 2, { wave: 'pulse25', gain: .03, rate: 25, a: .001, d: .4, s: .3, r: .3, bus: M.lead }); },
+  };
+
   /* ================== SOUND EFFECTS ================== */
   function sfxOut(pan = 0, v = 1) { const g = gainN(v); chain(g, panN(pan), M.sfx); return g; }
   const FX = {
@@ -548,8 +736,10 @@ const AUDIO = (() => {
     RNG = mulberry32(2024); NOISE = makeNoise(); Q = [];
     M = mixer(); M.pulse25 = pulseWave(.25); M.pulse50 = pulseWave(.5);
     const SKIP = window.__AUDIO_SKIP || {};          // debug: render stems
-    if (!SKIP.music) score();
-    if (!SKIP.sfx) for (const c of CUES) { const f = FX[c.type]; if (f) f(c); else console.warn('no sfx', c.type); }
+    const chipMode = SCORE === 'chip';
+    if (chipMode) M.music.gain.value *= 1.25;
+    if (!SKIP.music) chipMode ? scoreChip() : score();
+    if (!SKIP.sfx) for (const c of CUES) { const f = (chipMode && CHIP_FX[c.type]) || FX[c.type]; if (f) f(c); else console.warn('no sfx', c.type); }
     voiceAndDuck(SKIP.voice);
     // master fade at the very end
     M.master.gain.setValueAtTime(.9, DURATION - 1.2); M.master.gain.linearRampToValueAtTime(0, DURATION);
@@ -576,5 +766,5 @@ const AUDIO = (() => {
     const u8 = new Uint8Array(bytes.buffer); let s = ''; for (let i = 0; i < u8.length; i += 32768) s += String.fromCharCode.apply(null, u8.subarray(i, i + 32768));
     return btoa(s);
   }
-  return { load, render, wavBase64 };
+  return { load, render, wavBase64, score: SCORE };
 })();
