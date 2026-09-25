@@ -1,0 +1,15 @@
+{
+  "name": "lars-krahl-film",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A hand-made paper collage animation about Lars Krahl, rendered with pure JavaScript.",
+  "type": "module",
+  "scripts": {
+    "build": "node tools/build.mjs",
+    "preview": "node tools/render.mjs --preview",
+    "render": "node tools/render.mjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.55.0"
+  }
+}

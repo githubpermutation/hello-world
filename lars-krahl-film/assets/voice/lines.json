@@ -1,0 +1,92 @@
+[
+ {
+  "key": "dresden",
+  "text": "Once upon a time, in Dresden, by the river Elbe...",
+  "dur": 3.165
+ },
+ {
+  "key": "c64",
+  "text": "a curious kid met a beige box, called the Commodore sixty-four.",
+  "dur": 3.765
+ },
+ {
+  "key": "hooked1",
+  "text": "It blinked.",
+  "dur": 0.849
+ },
+ {
+  "key": "hooked2",
+  "text": "It beeped!",
+  "dur": 0.793
+ },
+ {
+  "key": "hooked3",
+  "text": "And he was hooked.",
+  "dur": 1.034
+ },
+ {
+  "key": "hooked4",
+  "text": "Forever.",
+  "dur": 0.701
+ },
+ {
+  "key": "boots",
+  "text": "After his military service, Lars swapped his boots for bytes...",
+  "dur": 3.764
+ },
+ {
+  "key": "certified",
+  "text": "and trained as an IT specialist, for system integration.",
+  "dur": 3.624
+ },
+ {
+  "key": "puppet",
+  "text": "Today, he pulls the strings of complex server platforms, with Puppet.",
+  "dur": 4.085
+ },
+ {
+  "key": "pipes",
+  "text": "He builds pipelines with Ansible, Foreman and Jenkins, so every deployment flows smoothly downstream.",
+  "dur": 6.387
+ },
+ {
+  "key": "python",
+  "text": "And when the right tool doesn't exist yet? He simply writes it, in Python.",
+  "dur": 4.064
+ },
+ {
+  "key": "cur1",
+  "text": "Networks.",
+  "dur": 0.785
+ },
+ {
+  "key": "cur2",
+  "text": "Web design.",
+  "dur": 0.95
+ },
+ {
+  "key": "cur3",
+  "text": "Graphics.",
+  "dur": 0.78
+ },
+ {
+  "key": "cur4",
+  "text": "Video.",
+  "dur": 0.672
+ },
+ {
+  "key": "cur5",
+  "text": "Audio.",
+  "dur": 0.704
+ },
+ {
+  "key": "cur6",
+  "text": "If it plugs in... he's curious.",
+  "dur": 1.969
+ },
+ {
+  "key": "outro",
+  "text": "Lars Krahl. Hooked since the C sixty-four.",
+  "dur": 2.779
+ }
+]

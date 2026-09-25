@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hooked Since the C64</title>
+<meta name="description" content="A 53-second hand-made paper-collage animation about Lars Krahl — written, voiced, scored and animated entirely in JavaScript.">
+<style>
+  :root { --bg: #1b140f; --paper: #f4ecd9; --ink: #2a1d14; --accent: #e4572e; --muted: #bfae96; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--paper); font: 16px/1.4 system-ui, sans-serif; overflow: hidden; }
+  body { background: radial-gradient(ellipse at center, #2a2018 0%, var(--bg) 70%); }
+  #stage { position: absolute; inset: 0; display: grid; place-items: center; }
+  #film { width: min(100vw, calc(100vh * 16 / 9)); aspect-ratio: 16 / 9; display: block; background: #b98f5e; box-shadow: 0 20px 80px rgba(0,0,0,.6); cursor: pointer; }
+  #start { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(20,12,6,.55); border: 0; color: inherit; font: inherit; cursor: wait; transition: opacity .6s; }
+  body.ready #start { cursor: pointer; }
+  body.started #start { opacity: 0; pointer-events: none; }
+  .card { background: var(--paper); color: var(--ink); padding: 28px 40px 24px; transform: rotate(-1.5deg); box-shadow: 6px 10px 0 rgba(0,0,0,.35); max-width: min(560px, calc(100vw - 32px));
+          clip-path: polygon(0 2%, 3% 0, 20% 1.5%, 45% 0, 70% 2%, 97% 0, 100% 3%, 99% 40%, 100% 75%, 98% 100%, 70% 98%, 40% 100%, 12% 98.5%, 0 100%, 1% 60%); }
+  .card h1 { font: 700 clamp(34px, 6vw, 56px)/1 'Caveat', cursive; margin: 0 0 6px; color: var(--accent); }
+  .card p { margin: 0 0 18px; font: clamp(18px, 2.4vw, 22px)/1.3 'Patrick Hand', 'Caveat', cursive; }
+  .loader { height: 10px; background: #e2d4b8; border-radius: 5px; overflow: hidden; }
+  #fill { height: 100%; width: 0; background: var(--accent); transition: width .2s; }
+  #status { font: 18px 'Patrick Hand', cursive; margin-top: 8px; color: #6b5a47; }
+  .go { display: none; margin-top: 4px; font: 700 30px 'Caveat', cursive; color: var(--ink); }
+  body.ready .loader, body.ready #status { display: none; }
+  body.ready .go { display: block; }
+  .go span { display: inline-block; background: var(--accent); color: var(--paper); padding: 2px 18px 4px; transform: rotate(2deg); margin-right: 10px; }
+  #controls { position: absolute; left: 50%; bottom: 14px; transform: translateX(-50%); width: min(720px, calc(100vw - 32px)); display: flex; gap: 12px; align-items: center;
+              background: rgba(27,20,15,.78); padding: 8px 14px; border-radius: 10px; opacity: 0; transition: opacity .4s; }
+  body.started #stage:hover #controls, body.paused #controls, body.ended #controls { opacity: 1; }
+  #controls button { background: none; border: 0; color: var(--paper); font-size: 18px; cursor: pointer; width: 32px; }
+  #seek { flex: 1; accent-color: var(--accent); }
+  #time { font: 13px ui-monospace, monospace; color: var(--muted); min-width: 86px; text-align: right; }
+</style>
+<!--__HEAD__-->
+</head>
+<body>
+<div id="stage">
+  <canvas id="film" width="1920" height="1080" aria-label="Animated paper-collage film about Lars Krahl"></canvas>
+  <button id="start" aria-label="Play the film">
+    <div class="card">
+      <h1>Hooked since the C64</h1>
+      <p>A little paper film about Lars Krahl.<br>Sound on, please.</p>
+      <div class="loader"><div id="fill"></div></div>
+      <div id="status">warming up the scissors…</div>
+      <div class="go"><span>▶ play</span>with sound</div>
+    </div>
+  </button>
+  <div id="controls">
+    <button id="play" aria-label="Play or pause">▶</button>
+    <input id="seek" type="range" min="0" max="1000" value="0" aria-label="Seek">
+    <span id="time">0:00 / 0:53</span>
+    <button id="fs" aria-label="Fullscreen">⛶</button>
+  </div>
+</div>
+<!--__SCRIPTS__-->
+</body>
+</html>
