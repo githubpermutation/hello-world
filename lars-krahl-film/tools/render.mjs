@@ -73,7 +73,7 @@ await browser.close();
 
 const out = path.join(root, arg('out', 'dist/lars-krahl.mp4'));
 const r = spawnSync(ffmpeg, ['-y', '-loglevel', 'error', '-framerate', String(FPS), '-i', path.join(dir, '%05d.png'), '-i', wavPath,
-  '-c:v', 'libx264', '-preset', 'slow', '-crf', '16', '-pix_fmt', 'yuv420p', '-tune', 'animation', '-movflags', '+faststart',
+  '-c:v', 'libx264', '-preset', 'slow', '-crf', '21', '-pix_fmt', 'yuv420p', '-tune', 'animation', '-movflags', '+faststart',
   '-c:a', 'aac', '-b:a', '256k', '-shortest', out], { stdio: 'inherit' });
 if (r.status) process.exit(r.status);
 console.log('wrote', out);
