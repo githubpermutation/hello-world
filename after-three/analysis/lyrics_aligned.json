@@ -1,0 +1,2120 @@
+[
+ {
+  "section": "Verse 1",
+  "text": "The music's off, your friends are gone",
+  "words": [
+   {
+    "w": "The",
+    "t": 2.56,
+    "m": true
+   },
+   {
+    "w": "music's",
+    "t": 2.96,
+    "m": true
+   },
+   {
+    "w": "off,",
+    "t": 3.68,
+    "m": true
+   },
+   {
+    "w": "your",
+    "t": 3.92,
+    "m": true
+   },
+   {
+    "w": "friends",
+    "t": 4.16,
+    "m": true
+   },
+   {
+    "w": "are",
+    "t": 4.56,
+    "m": true
+   },
+   {
+    "w": "gone",
+    "t": 4.8,
+    "m": true
+   }
+  ],
+  "start": 2.56
+ },
+ {
+  "section": "Verse 1",
+  "text": "I'm in the doorway, shoes back on",
+  "words": [
+   {
+    "w": "I'm",
+    "t": 7.2,
+    "m": true
+   },
+   {
+    "w": "in",
+    "t": 7.68,
+    "m": true
+   },
+   {
+    "w": "the",
+    "t": 7.84,
+    "m": true
+   },
+   {
+    "w": "doorway,",
+    "t": 8.0,
+    "m": true
+   },
+   {
+    "w": "shoes",
+    "t": 8.64,
+    "m": true
+   },
+   {
+    "w": "back",
+    "t": 9.12,
+    "m": true
+   },
+   {
+    "w": "on",
+    "t": 9.36,
+    "m": true
+   }
+  ],
+  "start": 7.2
+ },
+ {
+  "section": "Verse 1",
+  "text": "I zip my coat, unzip, and then -",
+  "words": [
+   {
+    "w": "I",
+    "t": 10.64,
+    "m": true
+   },
+   {
+    "w": "zip",
+    "t": 10.8,
+    "m": true
+   },
+   {
+    "w": "my",
+    "t": 11.28,
+    "m": true
+   },
+   {
+    "w": "coat,",
+    "t": 11.52,
+    "m": true
+   },
+   {
+    "w": "unzip,",
+    "t": 12.16,
+    "m": true
+   },
+   {
+    "w": "and",
+    "t": 13.2,
+    "m": true
+   },
+   {
+    "w": "then",
+    "t": 13.52,
+    "m": true
+   }
+  ],
+  "start": 10.64
+ },
+ {
+  "section": "Verse 1",
+  "text": "You rinse the same glass once again",
+  "words": [
+   {
+    "w": "You",
+    "t": 15.2,
+    "m": true
+   },
+   {
+    "w": "rinse",
+    "t": 15.36,
+    "m": true
+   },
+   {
+    "w": "the",
+    "t": 15.92,
+    "m": true
+   },
+   {
+    "w": "same",
+    "t": 16.16,
+    "m": true
+   },
+   {
+    "w": "glass",
+    "t": 16.64,
+    "m": true
+   },
+   {
+    "w": "once",
+    "t": 17.28,
+    "m": true
+   },
+   {
+    "w": "again",
+    "t": 19.12,
+    "m": false
+   }
+  ],
+  "start": 15.2
+ },
+ {
+  "section": "Verse 1",
+  "text": "You say it's way too late to walk",
+  "words": [
+   {
+    "w": "You",
+    "t": 20.96,
+    "m": true
+   },
+   {
+    "w": "say",
+    "t": 21.12,
+    "m": true
+   },
+   {
+    "w": "it's",
+    "t": 21.44,
+    "m": true
+   },
+   {
+    "w": "way",
+    "t": 21.76,
+    "m": true
+   },
+   {
+    "w": "too",
+    "t": 22.08,
+    "m": true
+   },
+   {
+    "w": "late",
+    "t": 22.32,
+    "m": true
+   },
+   {
+    "w": "to",
+    "t": 22.64,
+    "m": true
+   },
+   {
+    "w": "walk",
+    "t": 22.88,
+    "m": true
+   }
+  ],
+  "start": 20.96
+ },
+ {
+  "section": "Verse 1",
+  "text": "And haven't even checked the clock",
+  "words": [
+   {
+    "w": "And",
+    "t": 25.52,
+    "m": true
+   },
+   {
+    "w": "haven't",
+    "t": 25.76,
+    "m": true
+   },
+   {
+    "w": "even",
+    "t": 26.4,
+    "m": true
+   },
+   {
+    "w": "checked",
+    "t": 26.72,
+    "m": true
+   },
+   {
+    "w": "the",
+    "t": 27.28,
+    "m": true
+   },
+   {
+    "w": "clock",
+    "t": 27.44,
+    "m": true
+   }
+  ],
+  "start": 25.52
+ },
+ {
+  "section": "Verse 1",
+  "text": "I say I'll count and go on three",
+  "words": [
+   {
+    "w": "I",
+    "t": 28.88,
+    "m": true
+   },
+   {
+    "w": "say",
+    "t": 29.04,
+    "m": true
+   },
+   {
+    "w": "I'll",
+    "t": 29.44,
+    "m": true
+   },
+   {
+    "w": "count",
+    "t": 29.84,
+    "m": true
+   },
+   {
+    "w": "and",
+    "t": 30.32,
+    "m": true
+   },
+   {
+    "w": "go",
+    "t": 30.8,
+    "m": true
+   },
+   {
+    "w": "on",
+    "t": 31.2,
+    "m": true
+   },
+   {
+    "w": "three",
+    "t": 31.6,
+    "m": true
+   }
+  ],
+  "start": 28.88
+ },
+ {
+  "section": "Verse 1",
+  "text": "You dry your hands and walk to me",
+  "words": [
+   {
+    "w": "You",
+    "t": 33.36,
+    "m": true
+   },
+   {
+    "w": "dry",
+    "t": 33.72,
+    "m": false
+   },
+   {
+    "w": "your",
+    "t": 34.08,
+    "m": true
+   },
+   {
+    "w": "hands",
+    "t": 34.32,
+    "m": true
+   },
+   {
+    "w": "and",
+    "t": 34.96,
+    "m": true
+   },
+   {
+    "w": "walk",
+    "t": 35.28,
+    "m": true
+   },
+   {
+    "w": "to",
+    "t": 36.08,
+    "m": true
+   },
+   {
+    "w": "me",
+    "t": 36.4,
+    "m": true
+   }
+  ],
+  "start": 33.36
+ },
+ {
+  "section": "Chorus x2",
+  "text": "One, you take my keys",
+  "words": [
+   {
+    "w": "One,",
+    "t": 38.0,
+    "m": false
+   },
+   {
+    "w": "you",
+    "t": 39.6,
+    "m": true
+   },
+   {
+    "w": "take",
+    "t": 39.84,
+    "m": true
+   },
+   {
+    "w": "my",
+    "t": 40.24,
+    "m": true
+   },
+   {
+    "w": "keys",
+    "t": 40.48,
+    "m": true
+   }
+  ],
+  "start": 38.0
+ },
+ {
+  "section": "Chorus x2",
+  "text": "Two, they hit the floor",
+  "words": [
+   {
+    "w": "Two,",
+    "t": 41.04,
+    "m": true
+   },
+   {
+    "w": "they",
+    "t": 41.84,
+    "m": true
+   },
+   {
+    "w": "hit",
+    "t": 42.08,
+    "m": true
+   },
+   {
+    "w": "the",
+    "t": 42.4,
+    "m": true
+   },
+   {
+    "w": "floor",
+    "t": 42.56,
+    "m": true
+   }
+  ],
+  "start": 41.04
+ },
+ {
+  "section": "Chorus x2",
+  "text": "Three, I leave them be",
+  "words": [
+   {
+    "w": "Three,",
+    "t": 43.2,
+    "m": true
+   },
+   {
+    "w": "I",
+    "t": 44.24,
+    "m": true
+   },
+   {
+    "w": "leave",
+    "t": 44.4,
+    "m": true
+   },
+   {
+    "w": "them",
+    "t": 44.72,
+    "m": true
+   },
+   {
+    "w": "be",
+    "t": 44.88,
+    "m": false
+   }
+  ],
+  "start": 43.2
+ },
+ {
+  "section": "Chorus x2",
+  "text": "Holding still right by the door",
+  "words": [
+   {
+    "w": "Holding",
+    "t": 45.04,
+    "m": true
+   },
+   {
+    "w": "still",
+    "t": 46.08,
+    "m": true
+   },
+   {
+    "w": "right",
+    "t": 46.48,
+    "m": true
+   },
+   {
+    "w": "by",
+    "t": 46.72,
+    "m": true
+   },
+   {
+    "w": "the",
+    "t": 46.96,
+    "m": true
+   },
+   {
+    "w": "door",
+    "t": 47.2,
+    "m": true
+   }
+  ],
+  "start": 45.04
+ },
+ {
+  "section": "Chorus x2",
+  "text": "One, you take my keys",
+  "words": [
+   {
+    "w": "One,",
+    "t": 47.96,
+    "m": false
+   },
+   {
+    "w": "you",
+    "t": 48.72,
+    "m": true
+   },
+   {
+    "w": "take",
+    "t": 48.88,
+    "m": true
+   },
+   {
+    "w": "my",
+    "t": 49.28,
+    "m": true
+   },
+   {
+    "w": "keys",
+    "t": 49.52,
+    "m": true
+   }
+  ],
+  "start": 47.96
+ },
+ {
+  "section": "Chorus x2",
+  "text": "Two, they hit the floor",
+  "words": [
+   {
+    "w": "Two,",
+    "t": 50.0,
+    "m": true
+   },
+   {
+    "w": "they",
+    "t": 50.88,
+    "m": true
+   },
+   {
+    "w": "hit",
+    "t": 51.12,
+    "m": true
+   },
+   {
+    "w": "the",
+    "t": 51.44,
+    "m": true
+   },
+   {
+    "w": "floor",
+    "t": 51.6,
+    "m": true
+   }
+  ],
+  "start": 50.0
+ },
+ {
+  "section": "Chorus x2",
+  "text": "Three, I leave them be",
+  "words": [
+   {
+    "w": "Three,",
+    "t": 52.24,
+    "m": true
+   },
+   {
+    "w": "I",
+    "t": 53.28,
+    "m": true
+   },
+   {
+    "w": "leave",
+    "t": 53.44,
+    "m": true
+   },
+   {
+    "w": "them",
+    "t": 53.76,
+    "m": true
+   },
+   {
+    "w": "be",
+    "t": 53.96,
+    "m": false
+   }
+  ],
+  "start": 52.24
+ },
+ {
+  "section": "Chorus x2",
+  "text": "Holding still right by the door",
+  "words": [
+   {
+    "w": "Holding",
+    "t": 54.16,
+    "m": true
+   },
+   {
+    "w": "still",
+    "t": 55.12,
+    "m": true
+   },
+   {
+    "w": "right",
+    "t": 55.52,
+    "m": true
+   },
+   {
+    "w": "by",
+    "t": 55.76,
+    "m": true
+   },
+   {
+    "w": "the",
+    "t": 56.0,
+    "m": true
+   },
+   {
+    "w": "door",
+    "t": 56.16,
+    "m": true
+   }
+  ],
+  "start": 54.16
+ },
+ {
+  "section": "Verse 2",
+  "text": "You pull my coat down to one wrist",
+  "words": [
+   {
+    "w": "You",
+    "t": 57.12,
+    "m": true
+   },
+   {
+    "w": "pull",
+    "t": 57.28,
+    "m": true
+   },
+   {
+    "w": "my",
+    "t": 57.76,
+    "m": true
+   },
+   {
+    "w": "coat",
+    "t": 57.92,
+    "m": true
+   },
+   {
+    "w": "down",
+    "t": 58.32,
+    "m": true
+   },
+   {
+    "w": "to",
+    "t": 58.48,
+    "m": true
+   },
+   {
+    "w": "one",
+    "t": 58.72,
+    "m": true
+   },
+   {
+    "w": "wrist",
+    "t": 58.96,
+    "m": true
+   }
+  ],
+  "start": 57.12
+ },
+ {
+  "section": "Verse 2",
+  "text": "And kiss me while I'm stuck like this",
+  "words": [
+   {
+    "w": "And",
+    "t": 59.44,
+    "m": true
+   },
+   {
+    "w": "kiss",
+    "t": 59.6,
+    "m": true
+   },
+   {
+    "w": "me",
+    "t": 59.92,
+    "m": true
+   },
+   {
+    "w": "while",
+    "t": 60.16,
+    "m": true
+   },
+   {
+    "w": "I'm",
+    "t": 60.48,
+    "m": true
+   },
+   {
+    "w": "stuck",
+    "t": 60.8,
+    "m": true
+   },
+   {
+    "w": "like",
+    "t": 61.12,
+    "m": true
+   },
+   {
+    "w": "this",
+    "t": 61.28,
+    "m": true
+   }
+  ],
+  "start": 59.44
+ },
+ {
+  "section": "Verse 2",
+  "text": "I tug your shirt, a button pops",
+  "words": [
+   {
+    "w": "I",
+    "t": 61.68,
+    "m": true
+   },
+   {
+    "w": "tug",
+    "t": 61.84,
+    "m": true
+   },
+   {
+    "w": "your",
+    "t": 62.24,
+    "m": true
+   },
+   {
+    "w": "shirt,",
+    "t": 62.4,
+    "m": true
+   },
+   {
+    "w": "a",
+    "t": 62.8,
+    "m": true
+   },
+   {
+    "w": "button",
+    "t": 63.04,
+    "m": true
+   },
+   {
+    "w": "pops",
+    "t": 63.44,
+    "m": true
+   }
+  ],
+  "start": 61.68
+ },
+ {
+  "section": "Verse 2",
+  "text": "You ask me \"here?\" \u2013 my breathing stops",
+  "words": [
+   {
+    "w": "You",
+    "t": 63.92,
+    "m": true
+   },
+   {
+    "w": "ask",
+    "t": 64.08,
+    "m": true
+   },
+   {
+    "w": "me",
+    "t": 64.48,
+    "m": true
+   },
+   {
+    "w": "\"here?\"",
+    "t": 64.72,
+    "m": true
+   },
+   {
+    "w": "my",
+    "t": 64.96,
+    "m": true
+   },
+   {
+    "w": "breathing",
+    "t": 65.2,
+    "m": true
+   },
+   {
+    "w": "stops",
+    "t": 65.68,
+    "m": true
+   }
+  ],
+  "start": 63.92
+ },
+ {
+  "section": "Verse 2",
+  "text": "I work your belt free with one hand",
+  "words": [
+   {
+    "w": "I",
+    "t": 66.24,
+    "m": true
+   },
+   {
+    "w": "work",
+    "t": 66.48,
+    "m": false
+   },
+   {
+    "w": "your",
+    "t": 66.72,
+    "m": true
+   },
+   {
+    "w": "belt",
+    "t": 67.013,
+    "m": false
+   },
+   {
+    "w": "free",
+    "t": 67.307,
+    "m": false
+   },
+   {
+    "w": "with",
+    "t": 67.6,
+    "m": true
+   },
+   {
+    "w": "one",
+    "t": 67.76,
+    "m": true
+   },
+   {
+    "w": "hand",
+    "t": 68.0,
+    "m": true
+   }
+  ],
+  "start": 66.24
+ },
+ {
+  "section": "Verse 2",
+  "text": "You lift me higher than I planned",
+  "words": [
+   {
+    "w": "You",
+    "t": 68.4,
+    "m": true
+   },
+   {
+    "w": "lift",
+    "t": 68.56,
+    "m": true
+   },
+   {
+    "w": "me",
+    "t": 69.04,
+    "m": true
+   },
+   {
+    "w": "higher",
+    "t": 69.2,
+    "m": true
+   },
+   {
+    "w": "than",
+    "t": 69.68,
+    "m": true
+   },
+   {
+    "w": "I",
+    "t": 70.0,
+    "m": true
+   },
+   {
+    "w": "planned",
+    "t": 70.24,
+    "m": true
+   }
+  ],
+  "start": 68.4
+ },
+ {
+  "section": "Verse 2",
+  "text": "The counter's cold, and then it's not",
+  "words": [
+   {
+    "w": "The",
+    "t": 70.72,
+    "m": true
+   },
+   {
+    "w": "counter's",
+    "t": 70.88,
+    "m": true
+   },
+   {
+    "w": "cold,",
+    "t": 71.44,
+    "m": true
+   },
+   {
+    "w": "and",
+    "t": 71.84,
+    "m": true
+   },
+   {
+    "w": "then",
+    "t": 72.0,
+    "m": true
+   },
+   {
+    "w": "it's",
+    "t": 72.24,
+    "m": true
+   },
+   {
+    "w": "not",
+    "t": 72.56,
+    "m": true
+   }
+  ],
+  "start": 70.72
+ },
+ {
+  "section": "Verse 2",
+  "text": "You twist my hair into a knot",
+  "words": [
+   {
+    "w": "You",
+    "t": 72.88,
+    "m": true
+   },
+   {
+    "w": "twist",
+    "t": 73.04,
+    "m": true
+   },
+   {
+    "w": "my",
+    "t": 73.52,
+    "m": true
+   },
+   {
+    "w": "hair",
+    "t": 73.68,
+    "m": true
+   },
+   {
+    "w": "into",
+    "t": 74.0,
+    "m": true
+   },
+   {
+    "w": "a",
+    "t": 74.42,
+    "m": false
+   },
+   {
+    "w": "knot",
+    "t": 74.84,
+    "m": false
+   }
+  ],
+  "start": 72.88
+ },
+ {
+  "section": "Chorus x2",
+  "text": "One, you've got me pinned",
+  "words": [
+   {
+    "w": "One,",
+    "t": 75.26,
+    "m": false
+   },
+   {
+    "w": "you've",
+    "t": 75.68,
+    "m": true
+   },
+   {
+    "w": "got",
+    "t": 76.0,
+    "m": true
+   },
+   {
+    "w": "me",
+    "t": 76.16,
+    "m": true
+   },
+   {
+    "w": "pinned",
+    "t": 76.4,
+    "m": true
+   }
+  ],
+  "start": 75.26
+ },
+ {
+  "section": "Chorus x2",
+  "text": "Two, the wall, the floor",
+  "words": [
+   {
+    "w": "Two,",
+    "t": 77.04,
+    "m": true
+   },
+   {
+    "w": "the",
+    "t": 77.84,
+    "m": true
+   },
+   {
+    "w": "wall,",
+    "t": 78.16,
+    "m": true
+   },
+   {
+    "w": "the",
+    "t": 78.4,
+    "m": false
+   },
+   {
+    "w": "floor",
+    "t": 78.64,
+    "m": true
+   }
+  ],
+  "start": 77.04
+ },
+ {
+  "section": "Chorus x2",
+  "text": "Three, I pull you in",
+  "words": [
+   {
+    "w": "Three,",
+    "t": 79.2,
+    "m": true
+   },
+   {
+    "w": "I",
+    "t": 80.16,
+    "m": true
+   },
+   {
+    "w": "pull",
+    "t": 80.32,
+    "m": true
+   },
+   {
+    "w": "you",
+    "t": 80.8,
+    "m": true
+   },
+   {
+    "w": "in",
+    "t": 80.96,
+    "m": true
+   }
+  ],
+  "start": 79.2
+ },
+ {
+  "section": "Chorus x2",
+  "text": "Lost it after three or four",
+  "words": [
+   {
+    "w": "Lost",
+    "t": 81.44,
+    "m": true
+   },
+   {
+    "w": "it",
+    "t": 81.92,
+    "m": true
+   },
+   {
+    "w": "after",
+    "t": 82.08,
+    "m": true
+   },
+   {
+    "w": "three",
+    "t": 82.64,
+    "m": true
+   },
+   {
+    "w": "or",
+    "t": 82.96,
+    "m": true
+   },
+   {
+    "w": "four",
+    "t": 83.2,
+    "m": true
+   }
+  ],
+  "start": 81.44
+ },
+ {
+  "section": "Chorus x2",
+  "text": "One, you've got me pinned",
+  "words": [
+   {
+    "w": "One,",
+    "t": 83.92,
+    "m": false
+   },
+   {
+    "w": "you've",
+    "t": 84.64,
+    "m": true
+   },
+   {
+    "w": "got",
+    "t": 84.96,
+    "m": true
+   },
+   {
+    "w": "me",
+    "t": 85.12,
+    "m": true
+   },
+   {
+    "w": "pinned",
+    "t": 85.36,
+    "m": true
+   }
+  ],
+  "start": 83.92
+ },
+ {
+  "section": "Chorus x2",
+  "text": "Two, the wall, the floor",
+  "words": [
+   {
+    "w": "Two,",
+    "t": 86.0,
+    "m": true
+   },
+   {
+    "w": "the",
+    "t": 86.72,
+    "m": true
+   },
+   {
+    "w": "wall,",
+    "t": 87.04,
+    "m": true
+   },
+   {
+    "w": "the",
+    "t": 87.32,
+    "m": false
+   },
+   {
+    "w": "floor",
+    "t": 87.6,
+    "m": true
+   }
+  ],
+  "start": 86.0
+ },
+ {
+  "section": "Chorus x2",
+  "text": "Three, I pull you in",
+  "words": [
+   {
+    "w": "Three,",
+    "t": 88.08,
+    "m": true
+   },
+   {
+    "w": "I",
+    "t": 89.12,
+    "m": true
+   },
+   {
+    "w": "pull",
+    "t": 89.28,
+    "m": true
+   },
+   {
+    "w": "you",
+    "t": 89.76,
+    "m": true
+   },
+   {
+    "w": "in",
+    "t": 89.92,
+    "m": true
+   }
+  ],
+  "start": 88.08
+ },
+ {
+  "section": "Chorus x2",
+  "text": "Lost it after three or four",
+  "words": [
+   {
+    "w": "Lost",
+    "t": 90.4,
+    "m": true
+   },
+   {
+    "w": "it",
+    "t": 90.8,
+    "m": true
+   },
+   {
+    "w": "after",
+    "t": 91.12,
+    "m": true
+   },
+   {
+    "w": "three",
+    "t": 91.52,
+    "m": true
+   },
+   {
+    "w": "or",
+    "t": 91.84,
+    "m": true
+   },
+   {
+    "w": "four",
+    "t": 92.08,
+    "m": true
+   }
+  ],
+  "start": 90.4
+ },
+ {
+  "section": "Bridge | gentle",
+  "text": "In the dark you're still, and all the hurry's gone",
+  "words": [
+   {
+    "w": "In",
+    "t": 93.28,
+    "m": true
+   },
+   {
+    "w": "the",
+    "t": 93.52,
+    "m": true
+   },
+   {
+    "w": "dark",
+    "t": 93.68,
+    "m": true
+   },
+   {
+    "w": "you're",
+    "t": 94.08,
+    "m": true
+   },
+   {
+    "w": "still,",
+    "t": 94.4,
+    "m": true
+   },
+   {
+    "w": "and",
+    "t": 95.28,
+    "m": true
+   },
+   {
+    "w": "all",
+    "t": 95.44,
+    "m": true
+   },
+   {
+    "w": "the",
+    "t": 95.76,
+    "m": true
+   },
+   {
+    "w": "hurry's",
+    "t": 96.0,
+    "m": true
+   },
+   {
+    "w": "gone",
+    "t": 97.04,
+    "m": true
+   }
+  ],
+  "start": 93.28
+ },
+ {
+  "section": "Bridge | gentle",
+  "text": "Fingers trace around my wrist, but don't hold on",
+  "words": [
+   {
+    "w": "Fingers",
+    "t": 97.68,
+    "m": true
+   },
+   {
+    "w": "trace",
+    "t": 98.16,
+    "m": true
+   },
+   {
+    "w": "around",
+    "t": 98.72,
+    "m": true
+   },
+   {
+    "w": "my",
+    "t": 99.04,
+    "m": true
+   },
+   {
+    "w": "wrist,",
+    "t": 99.28,
+    "m": true
+   },
+   {
+    "w": "but",
+    "t": 100.0,
+    "m": true
+   },
+   {
+    "w": "don't",
+    "t": 100.4,
+    "m": true
+   },
+   {
+    "w": "hold",
+    "t": 101.04,
+    "m": true
+   },
+   {
+    "w": "on",
+    "t": 101.68,
+    "m": true
+   }
+  ],
+  "start": 97.68
+ },
+ {
+  "section": "Bridge | gentle",
+  "text": "And you say it's not too late for me to go",
+  "words": [
+   {
+    "w": "And",
+    "t": 102.24,
+    "m": true
+   },
+   {
+    "w": "you",
+    "t": 102.4,
+    "m": true
+   },
+   {
+    "w": "say",
+    "t": 102.72,
+    "m": true
+   },
+   {
+    "w": "it's",
+    "t": 102.96,
+    "m": true
+   },
+   {
+    "w": "not",
+    "t": 103.28,
+    "m": true
+   },
+   {
+    "w": "too",
+    "t": 103.52,
+    "m": true
+   },
+   {
+    "w": "late",
+    "t": 103.76,
+    "m": true
+   },
+   {
+    "w": "for",
+    "t": 104.48,
+    "m": true
+   },
+   {
+    "w": "me",
+    "t": 105.04,
+    "m": true
+   },
+   {
+    "w": "to",
+    "t": 105.36,
+    "m": true
+   },
+   {
+    "w": "go",
+    "t": 105.68,
+    "m": true
+   }
+  ],
+  "start": 102.24
+ },
+ {
+  "section": "Bridge | gentle",
+  "text": "So I start to count again, and count too slow",
+  "words": [
+   {
+    "w": "So",
+    "t": 106.4,
+    "m": true
+   },
+   {
+    "w": "I",
+    "t": 106.72,
+    "m": true
+   },
+   {
+    "w": "start",
+    "t": 106.96,
+    "m": true
+   },
+   {
+    "w": "to",
+    "t": 107.44,
+    "m": true
+   },
+   {
+    "w": "count",
+    "t": 107.68,
+    "m": true
+   },
+   {
+    "w": "again,",
+    "t": 108.24,
+    "m": true
+   },
+   {
+    "w": "and",
+    "t": 108.88,
+    "m": true
+   },
+   {
+    "w": "count",
+    "t": 109.28,
+    "m": true
+   },
+   {
+    "w": "too",
+    "t": 109.92,
+    "m": true
+   },
+   {
+    "w": "slow",
+    "t": 110.32,
+    "m": true
+   }
+  ],
+  "start": 106.4
+ },
+ {
+  "section": "Whispered",
+  "text": "(I should go)",
+  "words": [
+   {
+    "w": "(I",
+    "t": 111.76,
+    "m": true
+   },
+   {
+    "w": "should",
+    "t": 112.16,
+    "m": true
+   },
+   {
+    "w": "go)",
+    "t": 112.72,
+    "m": true
+   }
+  ],
+  "start": 111.76
+ },
+ {
+  "section": "Whispered",
+  "text": "(I don't know)",
+  "words": [
+   {
+    "w": "(I",
+    "t": 114.0,
+    "m": true
+   },
+   {
+    "w": "don't",
+    "t": 114.4,
+    "m": true
+   },
+   {
+    "w": "know)",
+    "t": 115.04,
+    "m": true
+   }
+  ],
+  "start": 114.0
+ },
+ {
+  "section": "Whispered",
+  "text": "(I won't go)",
+  "words": [
+   {
+    "w": "(I",
+    "t": 116.16,
+    "m": true
+   },
+   {
+    "w": "won't",
+    "t": 116.56,
+    "m": true
+   },
+   {
+    "w": "go)",
+    "t": 118.08,
+    "m": true
+   }
+  ],
+  "start": 116.16
+ },
+ {
+  "section": "Verse 3",
+  "text": "I find one button in my shoe",
+  "words": [
+   {
+    "w": "I",
+    "t": 119.6,
+    "m": true
+   },
+   {
+    "w": "find",
+    "t": 119.84,
+    "m": true
+   },
+   {
+    "w": "one",
+    "t": 120.16,
+    "m": true
+   },
+   {
+    "w": "button",
+    "t": 120.48,
+    "m": true
+   },
+   {
+    "w": "in",
+    "t": 120.8,
+    "m": false
+   },
+   {
+    "w": "my",
+    "t": 121.12,
+    "m": false
+   },
+   {
+    "w": "shoe",
+    "t": 121.44,
+    "m": true
+   }
+  ],
+  "start": 119.6
+ },
+ {
+  "section": "Verse 3",
+  "text": "Your spotless glass is cracked in two",
+  "words": [
+   {
+    "w": "Your",
+    "t": 121.84,
+    "m": true
+   },
+   {
+    "w": "spotless",
+    "t": 122.08,
+    "m": true
+   },
+   {
+    "w": "glass",
+    "t": 122.64,
+    "m": true
+   },
+   {
+    "w": "is",
+    "t": 122.987,
+    "m": false
+   },
+   {
+    "w": "cracked",
+    "t": 123.333,
+    "m": false
+   },
+   {
+    "w": "in",
+    "t": 123.68,
+    "m": true
+   },
+   {
+    "w": "two",
+    "t": 123.84,
+    "m": false
+   }
+  ],
+  "start": 121.84
+ },
+ {
+  "section": "Verse 3",
+  "text": "The couch is three feet from the wall",
+  "words": [
+   {
+    "w": "The",
+    "t": 124.0,
+    "m": true
+   },
+   {
+    "w": "couch",
+    "t": 124.16,
+    "m": true
+   },
+   {
+    "w": "is",
+    "t": 124.52,
+    "m": false
+   },
+   {
+    "w": "three",
+    "t": 124.88,
+    "m": true
+   },
+   {
+    "w": "feet",
+    "t": 125.2,
+    "m": true
+   },
+   {
+    "w": "from",
+    "t": 125.44,
+    "m": true
+   },
+   {
+    "w": "the",
+    "t": 125.68,
+    "m": true
+   },
+   {
+    "w": "wall",
+    "t": 125.84,
+    "m": true
+   }
+  ],
+  "start": 124.0
+ },
+ {
+  "section": "beat stops for one line",
+  "text": "\u2026 I never felt it move at all",
+  "words": [
+   {
+    "w": "I",
+    "t": 126.4,
+    "m": true
+   },
+   {
+    "w": "never",
+    "t": 126.56,
+    "m": true
+   },
+   {
+    "w": "felt",
+    "t": 126.96,
+    "m": true
+   },
+   {
+    "w": "it",
+    "t": 127.264,
+    "m": false
+   },
+   {
+    "w": "move",
+    "t": 127.568,
+    "m": false
+   },
+   {
+    "w": "at",
+    "t": 127.872,
+    "m": false
+   },
+   {
+    "w": "all",
+    "t": 128.176,
+    "m": false
+   }
+  ],
+  "start": 126.4
+ },
+ {
+  "section": "Verse 3 continued | full beat back in",
+  "text": "My voice is gone, don't ask me how",
+  "words": [
+   {
+    "w": "My",
+    "t": 128.48,
+    "m": true
+   },
+   {
+    "w": "voice",
+    "t": 128.72,
+    "m": true
+   },
+   {
+    "w": "is",
+    "t": 129.12,
+    "m": true
+   },
+   {
+    "w": "gone,",
+    "t": 129.28,
+    "m": true
+   },
+   {
+    "w": "don't",
+    "t": 129.68,
+    "m": true
+   },
+   {
+    "w": "ask",
+    "t": 130.0,
+    "m": true
+   },
+   {
+    "w": "me",
+    "t": 130.16,
+    "m": true
+   },
+   {
+    "w": "how",
+    "t": 130.4,
+    "m": true
+   }
+  ],
+  "start": 128.48
+ },
+ {
+  "section": "Verse 3 continued | full beat back in",
+  "text": "I'm humming in your shower now",
+  "words": [
+   {
+    "w": "I'm",
+    "t": 130.72,
+    "m": true
+   },
+   {
+    "w": "humming",
+    "t": 130.96,
+    "m": true
+   },
+   {
+    "w": "in",
+    "t": 131.6,
+    "m": true
+   },
+   {
+    "w": "your",
+    "t": 131.84,
+    "m": true
+   },
+   {
+    "w": "shower",
+    "t": 132.08,
+    "m": true
+   },
+   {
+    "w": "now",
+    "t": 132.56,
+    "m": true
+   }
+  ],
+  "start": 130.72
+ },
+ {
+  "section": "Verse 3 continued | full beat back in",
+  "text": "It's noon, I'm dressed, I've lost my keys",
+  "words": [
+   {
+    "w": "It's",
+    "t": 132.88,
+    "m": true
+   },
+   {
+    "w": "noon,",
+    "t": 133.12,
+    "m": true
+   },
+   {
+    "w": "I'm",
+    "t": 133.52,
+    "m": true
+   },
+   {
+    "w": "dressed,",
+    "t": 133.68,
+    "m": true
+   },
+   {
+    "w": "I've",
+    "t": 134.08,
+    "m": true
+   },
+   {
+    "w": "lost",
+    "t": 134.32,
+    "m": true
+   },
+   {
+    "w": "my",
+    "t": 134.56,
+    "m": true
+   },
+   {
+    "w": "keys",
+    "t": 134.72,
+    "m": true
+   }
+  ],
+  "start": 132.88
+ },
+ {
+  "section": "Verse 3 continued | full beat back in",
+  "text": "You laugh and start to count to three",
+  "words": [
+   {
+    "w": "You",
+    "t": 135.2,
+    "m": true
+   },
+   {
+    "w": "laugh",
+    "t": 135.44,
+    "m": true
+   },
+   {
+    "w": "and",
+    "t": 135.68,
+    "m": true
+   },
+   {
+    "w": "start",
+    "t": 135.92,
+    "m": true
+   },
+   {
+    "w": "to",
+    "t": 136.24,
+    "m": true
+   },
+   {
+    "w": "count",
+    "t": 136.4,
+    "m": true
+   },
+   {
+    "w": "to",
+    "t": 136.8,
+    "m": true
+   },
+   {
+    "w": "three",
+    "t": 137.04,
+    "m": true
+   }
+  ],
+  "start": 135.2
+ },
+ {
+  "section": "Chorus x1 | subtle, stripped, outro",
+  "text": "One, you find my keys",
+  "words": [
+   {
+    "w": "One,",
+    "t": 137.48,
+    "m": false
+   },
+   {
+    "w": "you",
+    "t": 137.92,
+    "m": true
+   },
+   {
+    "w": "find",
+    "t": 138.16,
+    "m": true
+   },
+   {
+    "w": "my",
+    "t": 138.48,
+    "m": true
+   },
+   {
+    "w": "keys",
+    "t": 138.64,
+    "m": true
+   }
+  ],
+  "start": 137.48
+ },
+ {
+  "section": "Chorus x1 | subtle, stripped, outro",
+  "text": "Two, you add one more",
+  "words": [
+   {
+    "w": "Two,",
+    "t": 139.28,
+    "m": true
+   },
+   {
+    "w": "you",
+    "t": 140.08,
+    "m": true
+   },
+   {
+    "w": "add",
+    "t": 140.4,
+    "m": true
+   },
+   {
+    "w": "one",
+    "t": 140.64,
+    "m": true
+   },
+   {
+    "w": "more",
+    "t": 140.88,
+    "m": true
+   }
+  ],
+  "start": 139.28
+ },
+ {
+  "section": "Chorus x1 | subtle, stripped, outro",
+  "text": "Three, you're mine to keep",
+  "words": [
+   {
+    "w": "Three,",
+    "t": 141.44,
+    "m": true
+   },
+   {
+    "w": "you're",
+    "t": 142.24,
+    "m": true
+   },
+   {
+    "w": "mine",
+    "t": 142.56,
+    "m": true
+   },
+   {
+    "w": "to",
+    "t": 142.88,
+    "m": true
+   },
+   {
+    "w": "keep",
+    "t": 143.12,
+    "m": true
+   }
+  ],
+  "start": 141.44
+ },
+ {
+  "section": "Chorus x1 | subtle, stripped, outro",
+  "text": "Never made it through the door",
+  "words": [
+   {
+    "w": "Never",
+    "t": 143.68,
+    "m": true
+   },
+   {
+    "w": "made",
+    "t": 144.16,
+    "m": true
+   },
+   {
+    "w": "it",
+    "t": 144.56,
+    "m": true
+   },
+   {
+    "w": "through",
+    "t": 144.72,
+    "m": true
+   },
+   {
+    "w": "the",
+    "t": 145.12,
+    "m": true
+   },
+   {
+    "w": "door",
+    "t": 145.28,
+    "m": true
+   }
+  ],
+  "start": 143.68
+ },
+ {
+  "section": "Chorus x1 | subtle, stripped, outro",
+  "text": "Never made it through the door",
+  "words": [
+   {
+    "w": "Never",
+    "t": 147.653,
+    "m": false
+   },
+   {
+    "w": "made",
+    "t": 150.027,
+    "m": false
+   },
+   {
+    "w": "it",
+    "t": 152.4,
+    "m": true
+   },
+   {
+    "w": "through",
+    "t": 152.56,
+    "m": false
+   },
+   {
+    "w": "the",
+    "t": 152.72,
+    "m": false
+   },
+   {
+    "w": "door",
+    "t": 152.88,
+    "m": false
+   }
+  ],
+  "start": 147.653
+ },
+ {
+  "section": "Chorus x1 | subtle, stripped, outro",
+  "text": "Never made it through the door",
+  "words": [
+   {
+    "w": "Never",
+    "t": 153.04,
+    "m": false
+   },
+   {
+    "w": "made",
+    "t": 153.2,
+    "m": false
+   },
+   {
+    "w": "it",
+    "t": 153.36,
+    "m": true
+   },
+   {
+    "w": "through",
+    "t": 153.52,
+    "m": true
+   },
+   {
+    "w": "the",
+    "t": 153.84,
+    "m": true
+   },
+   {
+    "w": "door",
+    "t": 154.08,
+    "m": true
+   }
+  ],
+  "start": 153.04
+ },
+ {
+  "section": "Chorus x1 | subtle, stripped, outro",
+  "text": "Never made it through the door",
+  "words": [
+   {
+    "w": "Never",
+    "t": 156.72,
+    "m": false
+   },
+   {
+    "w": "made",
+    "t": 159.36,
+    "m": false
+   },
+   {
+    "w": "it",
+    "t": 162.0,
+    "m": true
+   },
+   {
+    "w": "through",
+    "t": 162.3,
+    "m": false
+   },
+   {
+    "w": "the",
+    "t": 162.6,
+    "m": false
+   },
+   {
+    "w": "door",
+    "t": 162.9,
+    "m": false
+   }
+  ],
+  "start": 156.72
+ }
+]

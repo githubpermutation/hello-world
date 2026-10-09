@@ -1,0 +1,7 @@
+node_modules/
+src/vendor/
+analysis/*.wav
+analysis/*.f32
+analysis/*.npy
+analysis/*.asr.json
+dist/

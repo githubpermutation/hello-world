@@ -1,0 +1,13 @@
+html,body{margin:0;height:100%;background:#000;overflow:hidden;color:#f3ece2;font-family:Inter,system-ui,sans-serif}
+#stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+#film{display:block;background:#000}
+#start{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;background:radial-gradient(ellipse at center,rgba(0,0,0,.2),rgba(0,0,0,.75));transition:opacity .8s}
+#start.gone{opacity:0;pointer-events:none}
+#start h1{font-family:"Instrument Serif",serif;font-weight:400;font-style:italic;font-size:clamp(48px,9vw,120px);margin:0;letter-spacing:.01em}
+#start span{margin-top:18px;font-size:12px;letter-spacing:.5em;text-transform:uppercase;opacity:.8;border:1px solid rgba(255,255,255,.4);padding:12px 22px;border-radius:40px}
+#start small{margin-top:26px;font-size:11px;letter-spacing:.2em;opacity:.45}
+#ui{position:fixed;left:0;right:0;bottom:0;padding:18px 24px;transition:opacity .6s}
+#ui.hide{opacity:0}
+#bar{height:14px;display:flex;align-items:center;cursor:pointer}
+#bar div{height:2px;width:100%;background:rgba(255,255,255,.18)}
+#fill{height:2px;background:#ff3d4f;width:0}
