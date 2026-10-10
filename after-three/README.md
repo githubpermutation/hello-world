@@ -6,19 +6,15 @@ in code (three.js + custom shaders + Canvas 2D). There are no image or model
 files; every texture (wood floor, marble, plaster, tiles, fabric, leather, city
 at night) is painted procedurally at load time.
 
-- **Watch it live:** the film runs in real time in the browser, synced to the
-  song. From the repo root:
-
-  ```bash
-  cd after-three && npm install && node tools/build.mjs   # -> dist/index.html (~1 MB)
-  cd .. && npx http-server -p 8123 .                       # then open:
-  # http://localhost:8123/after-three/dist/index.html
-  ```
-
-  Click or press space to play, ←/→ to seek, F for fullscreen. The player lowers
-  its internal resolution automatically on slow GPUs; add `?scale=0.5` to force
-  it. `node tools/build.mjs --embed` inlines the audio too, giving a single
-  ~10 MB file you can open anywhere without a server.
+- **Watch it live:** open [`dist/index.html`](dist/index.html) in a browser
+  (double-clicking it works). The film runs in real time, synced to the song,
+  which the page loads from `After Three.m4a` at the repo root, so keep the
+  file where it is in the checkout. Click or press space to play, ←/→ to seek,
+  F for fullscreen. The player lowers its internal resolution automatically on
+  slow GPUs; add `?scale=0.5` to force it.
+- **Rebuild it:** `cd after-three && npm install && node tools/build.mjs`.
+  `node tools/build.mjs --embed` inlines the audio too, giving a ~10 MB file
+  that works anywhere (not committed, to keep the repo small).
 - **Concept and shot list:** [`TREATMENT.md`](TREATMENT.md).
 
 ## The idea

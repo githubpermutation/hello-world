@@ -4,4 +4,5 @@ analysis/*.wav
 analysis/*.f32
 analysis/*.npy
 analysis/*.asr.json
-dist/
+dist/*
+!dist/index.html
