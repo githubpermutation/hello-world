@@ -56,6 +56,20 @@ per-band energy envelopes used for light pulses, is in `src/data.js`.
 | Sets: the apartment (day/night rigs), a macro "studio" stage, a shower-glass shader, a void for type | `src/sets/` |
 | Props: keyring, glasses (incl. the cracked one), pump, button, belt, zipper, GPU hair, furniture, window with blinds | `src/props/` |
 
+## Playback performance notes
+
+- **Warm-up.** Each shot has its own light/shadow combination, and every
+  combination is a separate shader program. `Engine.warmAsync` renders each
+  shot at four points before Play so none of that happens mid-song.
+- **Clock.** `audio.currentTime` advances in coarse steps, so the player runs its
+  own clock from the frame timestamps and eases it toward the audio time.
+- **Text layer.** Line layouts are cached, large glowing numerals are baked once
+  into sprites, and the 1080p canvas is only repainted/re-uploaded when what is
+  visible changes. 2D canvases are GPU-backed in the browser; only the offline
+  renderer (`?render=1`) switches them to CPU-backed for fast readback.
+- `?render=1` also keeps the WebGL drawing buffer for screenshots, which a real
+  player doesn't need.
+
 ## Rendering a video file
 
 No video is committed. To render one (headless Chromium + ffmpeg; about

@@ -5,7 +5,7 @@ import SONG from './data.js';
 import { L, word, B, BEAT, v3, path, grade, fadeIn, fadeOut, flashIn, whipIn, whipOut, pump, bounce, numerals, caption, toScreen, clamp, lerp, smooth, invLerp, easeInOut, easeOut, mulberry32 } from './shotkit.js';
 import { poseKeyring } from './props/keys.js';
 import { poseTowel } from './sets/apartment.js';
-import { noise1, fbm1, ring, decay, backOut, expoOut, easeIn } from './util.js';
+import { noise1, fbm1, ring, decay, backOut, expoOut, easeIn, ctx2d } from './util.js';
 import { FONTS } from './text.js';
 
 const KF = [-4.45, 0.0, 0.95]; // where the keys land by the door
@@ -36,7 +36,7 @@ const key = (p, t, i, col = WARM, a = 0.5, extra = {}) => ({ p, t, i, c: col, a,
 let fogNoise = null;
 function fogBase(w, h) {
   if (fogNoise) return fogNoise;
-  const c = document.createElement('canvas'); c.width = w; c.height = h; const x = c.getContext('2d', { willReadFrequently: true });
+  const c = document.createElement('canvas'); c.width = w; c.height = h; const x = ctx2d(c);
   const img = x.createImageData(w, h); const r = mulberry32(5);
   for (let i = 0; i < w * h; i++) { const v = 0.55 + r() * 0.12; img.data[i * 4] = 210; img.data[i * 4 + 1] = 222; img.data[i * 4 + 2] = 240; img.data[i * 4 + 3] = v * 255; }
   x.putImageData(img, 0, 0);

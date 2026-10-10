@@ -11,3 +11,5 @@ html,body{margin:0;height:100%;background:#000;overflow:hidden;color:#f3ece2;fon
 #bar{height:14px;display:flex;align-items:center;cursor:pointer}
 #bar div{height:2px;width:100%;background:rgba(255,255,255,.18)}
 #fill{height:2px;background:#ff3d4f;width:0}
+#start.busy{pointer-events:none}
+#start.busy span{opacity:.55;min-width:11ch;text-align:center}

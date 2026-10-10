@@ -3,11 +3,12 @@
 // sharp. A canvas mask holds where a finger has cleared the fog.
 import * as THREE from 'three';
 import { tileTex } from '../textures.js';
+import { ctx2d } from '../util.js';
 
 export function buildShower() {
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x000000);
-  const maskC = document.createElement('canvas'); maskC.width = 1024; maskC.height = 640; maskC.getContext('2d', { willReadFrequently: true });
+  const maskC = document.createElement('canvas'); maskC.width = 1024; maskC.height = 640; ctx2d(maskC);
   const maskTex = new THREE.CanvasTexture(maskC); maskTex.colorSpace = THREE.NoColorSpace;
   const tiles = tileTex(); tiles.wrapS = tiles.wrapT = THREE.RepeatWrapping; tiles.minFilter = THREE.LinearMipmapLinearFilter;
   const mat = new THREE.ShaderMaterial({

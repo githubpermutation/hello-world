@@ -1,6 +1,6 @@
 // Steel-grid loft window with venetian blinds, the city outside and a neon sign.
 import * as THREE from 'three';
-import { mulberry32 } from '../util.js';
+import { mulberry32, ctx2d } from '../util.js';
 
 function cityTexture(day) {
   const W = 2048, H = 1024;
@@ -54,7 +54,7 @@ export function makeWindow() {
   const glassMat = new THREE.MeshPhysicalMaterial({ color: 0xffffff, roughness: 0.04, metalness: 0, transparent: true, opacity: 0.08, envMapIntensity: 1.5 });
   const pane = new THREE.Mesh(new THREE.PlaneGeometry(W, H), glassMat); pane.position.set(0, H / 2, -0.005); g.add(pane);
   // fog layer on the glass (bridge: words written in condensation)
-  const fogC = document.createElement('canvas'); fogC.width = 1024; fogC.height = 683; fogC.getContext('2d', { willReadFrequently: true });
+  const fogC = document.createElement('canvas'); fogC.width = 1024; fogC.height = 683; ctx2d(fogC);
   const fogTex = new THREE.CanvasTexture(fogC); fogTex.colorSpace = THREE.SRGBColorSpace;
   const fog = new THREE.Mesh(new THREE.PlaneGeometry(W, H), new THREE.MeshBasicMaterial({ map: fogTex, transparent: true, depthWrite: false, opacity: 1 }));
   fog.position.set(0, H / 2, 0.012); fog.visible = false; g.add(fog);
@@ -85,7 +85,7 @@ export function makeWindow() {
   const neonMat = new THREE.MeshBasicMaterial({ map: neonTexture(), color: new THREE.Color(1, 1, 1).multiplyScalar(8), blending: THREE.AdditiveBlending, transparent: true, toneMapped: false, depthWrite: false });
   const neon = new THREE.Mesh(new THREE.PlaneGeometry(0.75, 3.0), neonMat); neon.position.set(-1.6, 1.9, -6); g.add(neon);
   g.userData = { W, H, setBlinds, slats, cityMat, nightTex, dayTex, neonMat, neon, fog, fogC, fogTex, pane };
-  g.userData.setDay = (day) => { cityMat.map = day ? dayTex : nightTex; cityMat.color.setScalar(day ? 2.2 : 1.6); cityMat.needsUpdate = true; neon.visible = !day; };
+  g.userData.setDay = (day) => { const m = day ? dayTex : nightTex; if (cityMat.map !== m) { cityMat.map = m; cityMat.needsUpdate = true; } cityMat.color.setScalar(day ? 2.2 : 1.6); neon.visible = !day; };
   g.userData.setNeon = (v) => neonMat.color.setScalar(8 * v);
   return g;
 }

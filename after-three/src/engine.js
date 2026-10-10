@@ -5,9 +5,9 @@ import { Post, DEFAULT_FX } from './post.js';
 import { TextLayer } from './text.js';
 import SONG from './data.js';
 import { SHOTS } from './shots.js';
-import { lyricStyleFor, drawLyrics } from './lyrics.js';
+import { lyricStyleFor, activeLyrics } from './lyrics.js';
 import { getSet } from './sets/index.js';
-import { handheld, clamp } from './util.js';
+import { handheld, clamp, RENDER_MODE } from './util.js';
 
 export const W = 1920, H = 1080;
 
@@ -23,7 +23,7 @@ export function sinceBeat(t) { const p = beatPhase(t); return p.f * BEAT; }
 
 export class Engine {
   constructor(canvas, scale = 1) {
-    const r = this.renderer = new THREE.WebGLRenderer({ canvas, antialias: false, preserveDrawingBuffer: true, powerPreference: 'high-performance', stencil: false });
+    const r = this.renderer = new THREE.WebGLRenderer({ canvas, antialias: false, preserveDrawingBuffer: RENDER_MODE, powerPreference: 'high-performance', stencil: false });
     const w = Math.round(W * scale), h = Math.round(H * scale);
     r.setPixelRatio(1); r.setSize(w, h, false);
     r.shadowMap.enabled = true; r.shadowMap.type = THREE.PCFSoftShadowMap;
@@ -54,6 +54,23 @@ export class Engine {
   warm() {
     for (const sh of this.shots) { this.render(sh.t0 + 0.01); }
   }
+  // Player warm-up: render every shot at a few points so every set, texture
+  // upload, shader variant and glyph sprite exists before the first frame is
+  // shown. Each light/shadow combination is its own shader program, so
+  // without this each new shot would freeze for the compile.
+  async warmAsync(onProgress) {
+    const fr = [0.04, 0.35, 0.65, 0.96];
+    const gl = this.renderer.getContext(); const px = new Uint8Array(4);
+    const total = this.shots.length * fr.length; let n = 0;
+    for (const sh of this.shots) for (const f of fr) {
+      this.render(sh.t0 + (sh.t1 - sh.t0) * f);
+      gl.readPixels(0, 0, 1, 1, gl.RGBA, gl.UNSIGNED_BYTE, px); // wait for the GPU
+      n++;
+      onProgress?.(n / total);
+      await new Promise((r) => setTimeout(r, 0));
+    }
+    this.text.sig = null;
+  }
   render(t) {
     const shot = this.shotAt(t);
     const set = getSet(shot.set);
@@ -80,10 +97,17 @@ export class Engine {
     cam.updateMatrixWorld();
     // typography
     if (!window.__noText) {
-      this.text.clear();
-      drawLyrics(this.text, t, SONG.lines);
-      for (const o of ctx.overlays) { this.text.ctx.save(); o(this.text.ctx, this.text); this.text.ctx.restore(); }
-      this.text.commit();
+      const T = this.text;
+      const items = activeLyrics(T, t, SONG.lines);
+      const sig = items.map((p) => p.sig).join('|');
+      // repaint (and re-upload the canvas) only if something visible changed
+      if (ctx.overlays.length || sig !== T.sig || window.__noSkip) {
+        T.clear();
+        for (const p of items) T.paint(p);
+        for (const o of ctx.overlays) { T.ctx.save(); o(T.ctx, T); T.ctx.restore(); }
+        T.commit();
+        T.sig = ctx.overlays.length ? null : sig;
+      }
     }
     this.post.render(set.scene, cam, fx, this.text.tex, t);
   }

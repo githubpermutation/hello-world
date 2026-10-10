@@ -227,6 +227,8 @@ export function buildApartment() {
 // Towel hanging over the counter edge: top part flat on the counter, rest hangs.
 // fall: 0 resting, 1 slid off the edge and dropped
 export function poseTowel(towel, fall, t) {
+  if (towel.userData.lastFall === fall) return;
+  towel.userData.lastFall = fall;
   const p = towel.geometry.attributes.position; const b = towel.userData.base;
   for (let i = 0; i < p.count; i++) {
     const x = b[i * 3], y = b[i * 3 + 1]; // plane: x in [-.17,.17], y in [-.25,.25]

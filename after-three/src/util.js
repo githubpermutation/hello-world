@@ -63,3 +63,8 @@ export function handheld(t, amp = 1, seed = 0) {
 // damped spring response to an impulse at time t0
 export const ring = (t, t0, freq = 6, damp = 6) => (t < t0 ? 0 : Math.exp(-(t - t0) * damp) * Math.sin((t - t0) * freq * Math.PI * 2));
 export const decay = (t, t0, k = 6) => (t < t0 ? 0 : Math.exp(-(t - t0) * k));
+
+// Offline rendering (headless software GL) reads canvases back constantly, so
+// it wants CPU-backed 2D canvases; a real browser wants GPU-backed ones.
+export const RENDER_MODE = typeof location !== 'undefined' && /[?&]render=1/.test(location.search);
+export function ctx2d(canvas) { return canvas.getContext('2d', RENDER_MODE ? { willReadFrequently: true } : undefined); }

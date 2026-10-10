@@ -1,7 +1,7 @@
 // Helpers for writing shots: grades, timing, camera paths, physics, overlays.
 import SONG from './data.js';
 import { clamp, lerp, smooth, invLerp, easeInOut, easeOut, mulberry32 } from './util.js';
-import { FONTS } from './text.js';
+import { FONTS, drawGlyph } from './text.js';
 
 export const L = (i) => SONG.lines[i].start;
 export const LE = (i) => SONG.lines[i].end;
@@ -56,22 +56,22 @@ export function bounce(t, y0, v0 = 0, floor = 0, e = 0.3, g = 9.81) {
 }
 
 // Numerals overlay drawn behind text: list of {ch, x, y, size, t0, t1, col, alpha, blur, italic}
+// Glyphs are baked into sprites once (see drawGlyph); `blur` pulls focus by
+// cross-fading a blurred and a sharp sprite.
 export function numerals(c, items) {
+  for (const n of items) drawGlyph(null, { ch: n.ch, base: n.size, col: n.col ?? [255, 60, 70], glow: n.glow ?? 40, stroke: n.stroke, italic: !!n.italic, middle: true, blurMax: n.blur ?? 0, prebake: true });
   c.overlays.push((ctx) => {
     for (const n of items) {
       const a = smooth(invLerp(n.t0, n.t0 + (n.fi ?? 0.12), c.t)) * (1 - smooth(invLerp(n.t1 - (n.fo ?? 0.4), n.t1, c.t))) * (n.alpha ?? 1);
       if (a <= 0.002) continue;
       const lt = c.t - n.t0;
-      const s = n.size * (1 + (n.zoom ?? 0.08) * Math.exp(-lt * 5) + (n.grow ?? 0) * lt);
-      ctx.save();
-      ctx.font = `${n.italic ? 'italic ' : ''}400 ${s}px ${FONTS.SERIF}`; ctx.textAlign = 'center'; ctx.textBaseline = 'middle';
-      const col = n.col ?? [255, 60, 70];
-      if (n.blur && ctx.filter !== undefined) ctx.filter = `blur(${n.blur * (1 - smooth(lt / 0.6)) + (n.blurEnd ?? 0)}px)`;
-      ctx.shadowColor = `rgba(${col[0]},${col[1]},${col[2]},${a * 0.7})`; ctx.shadowBlur = n.glow ?? 40;
-      ctx.translate(n.x + (n.dx ?? 0) * lt, n.y + (n.dy ?? 0) * lt); if (n.rot) ctx.rotate(n.rot + (n.spin ?? 0) * lt);
-      if (n.stroke) { ctx.lineWidth = n.stroke; ctx.strokeStyle = `rgba(${col[0]},${col[1]},${col[2]},${a})`; ctx.strokeText(n.ch, 0, 0); }
-      else { ctx.fillStyle = `rgba(${col[0]},${col[1]},${col[2]},${a})`; ctx.fillText(n.ch, 0, 0); }
-      ctx.restore();
+      drawGlyph(ctx, {
+        ch: n.ch, x: n.x + (n.dx ?? 0) * lt, y: n.y + (n.dy ?? 0) * lt, a, base: n.size,
+        size: n.size * (1 + (n.zoom ?? 0.08) * Math.exp(-lt * 5) + (n.grow ?? 0) * lt),
+        col: n.col ?? [255, 60, 70], glow: n.glow ?? 40, stroke: n.stroke, italic: !!n.italic, middle: true,
+        blurMax: n.blur ?? 0, blur: n.blur ? n.blur * (1 - smooth(lt / 0.6)) + (n.blurEnd ?? 0) : 0,
+        rot: n.rot ? n.rot + (n.spin ?? 0) * lt : 0,
+      });
     }
   });
 }

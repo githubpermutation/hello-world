@@ -41,11 +41,14 @@ export function lyricStyleFor(L, shot) {
   if (L.lyric) Object.assign(st, L.lyric);
   return st;
 }
-export function drawLyrics(text, t, lines) {
+// Lines visible at time t, prepared for painting (see TextLayer.prep).
+export function activeLyrics(text, t, lines) {
+  const out = [];
   for (const L of lines) {
-    if (t < L.start - 0.5 || t > L.end + 0.2) continue;
-    if (L.style.hidden) continue;
-    text.line(L, t, L.style);
+    if (t < L.start - 0.5 || t > L.end + 0.2 || L.style.hidden) continue;
+    const p = text.prep(L, t, L.style);
+    if (p) out.push(p);
   }
+  return out;
 }
 export { FONTS };
